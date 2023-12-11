@@ -14,7 +14,7 @@ class MNISTDataLoader:
     DOWNLOAD_MNIST = False
 
     #if mnist dir doesn't exist or is empty
-    if not(os.path.exists('./mnist')) or not os.listdir('./mnist/'): 
+    if not(os.path.exists('./MNIST')) or not os.listdir('./MNIST/'): 
         DOWNLOAD_MNIST = True 
  
     def __init__(self, batch_size = 32, num_workers = 2):
@@ -27,7 +27,7 @@ class MNISTDataLoader:
     
     def _load_train(self): 
 
-        self.train_data = torchvision.datasets.MNIST(root='./mnist/',
+        self.train_data = torchvision.datasets.MNIST(root='./MNIST/',
                                                 train= True,
                                                 transform=self.transform,
                                                 download=self.DOWNLOAD_MNIST)
@@ -37,11 +37,11 @@ class MNISTDataLoader:
                                             batch_size= self.batch_size,
                                             shuffle=True,
                                             num_workers=self.num_workers)
-        
+        return self.train_loader
 
     def _load_test(self):
 
-        self.test_data = torchvision.datasets.MNIST(root='./mnist/',
+        self.test_data = torchvision.datasets.MNIST(root='./MNIST/',
                                                 train= False,
                                                 transform=self.transform,
                                                 download=self.DOWNLOAD_MNIST)
