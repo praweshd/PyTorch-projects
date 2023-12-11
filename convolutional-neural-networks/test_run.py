@@ -20,17 +20,21 @@ test_data = torchvision.datasets.MNIST(root='./MNIST/', train = False, download=
 test_loader = data.DataLoader(test_data, batch_size=BATCH_SIZE, shuffle = False )
 
   
-examples = enumerate(test_loader)
-batch_idx, (example_data, example_targets) = next(examples)
+examples = enumerate(train_loader)
+batch_idx, (images, labels) = next(examples) #images is [32, 1, 28, 28]
+
+tmp = images[0] # [1, 28, 28]
+tmp2 = tmp[0][0] 
+
 
 import matplotlib.pyplot as plt
 
 fig = plt.figure()
-for i in range(6):
-  plt.subplot(2,3,i+1)
+for i in range(BATCH_SIZE):
+  plt.subplot(4,8,i+1)
   plt.tight_layout()
-  plt.imshow(example_data[i][0], cmap='gray', interpolation='none')
-  plt.title("Ground Truth: {}".format(example_targets[i]))
+  plt.imshow(images[i][0], cmap='gray', interpolation='none')
+  plt.title("Ground Truth: {}".format(labels[i]))
   plt.xticks([])
   plt.yticks([])
 
