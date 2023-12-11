@@ -22,7 +22,30 @@ class CNN(nn.Module):
         x = self.drop(x)
         x = self.pool(x)
 
+        x = torch.flatten(x,1)
+
+        x = F.relu(self.fc1(x))
+
+        x = F.relu(self.fc2(x))
+
+        return x
+
+        # If you are using cross-entropy loss, simply
+        # return the input x.
+        # When using negative log-likelihood, make sure
+        # to convert x to softmax outputs of probabilities
+        # by doing extra step of return x = F.log_softmax(x) or log(F.softmax(x))
         
+
+
+
+
+
+
+
+
+
+
 
 
     
