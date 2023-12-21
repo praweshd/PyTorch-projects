@@ -4,12 +4,12 @@ import torch.nn.functional as F
 
 class CNN(nn.Module):
     def __init__(self):
-        super(CNN, self).__init__()
+        super().__init__()
         self.conv1 = nn.Conv2d(1,10,kernel_size=5)
         self.pool = nn.MaxPool2d(2,2) #kernel + stride
         self.conv2 = nn.Conv2D(10,20,kernel_size=5)
         self.drop = nn.Dropout2d()
-        self.fc1 = nn.Linear(320, 50)
+        self.fc1 = nn.Linear(20 * 4 * 4, 50)
         self.fc2 = nn.Linear(50,10)
 
     def forward(self,x):
@@ -34,21 +34,7 @@ class CNN(nn.Module):
         # return the input x.
         # When using negative log-likelihood, make sure
         # to convert x to softmax outputs of probabilities
-        # by doing extra step of return x = F.log_softmax(x) or log(F.softmax(x))
-        
-
-
-
-
-
-
-
-
-
-
-
-
-    
+        # by doing extra step of return x = F.log_softmax(x) or log(F.softmax(x)) 
 
     #   super().__init__()
     #     self.conv1 = nn.Conv2d(3, 6, 5)
